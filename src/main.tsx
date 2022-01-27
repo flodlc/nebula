@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Atoms } from "src/Atoms";
+import { Playground } from "src/playground";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Atoms />
+    <Playground />
   </React.StrictMode>,
   document.getElementById("app")
 );

@@ -4,8 +4,8 @@ export const bigSolarSystem: AstreDescription[] = [
   {
     name: "Sun",
     type: "sun",
-    width: 20,
-    distance: 45,
+    width: 15,
+    distance: 0,
     startAngle: 0,
     rotateSpeed: 0,
     color: "rgb(255,180,40)",

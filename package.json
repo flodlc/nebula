@@ -11,6 +11,7 @@
     "build:types": "yarn tsc --emitDeclarationOnly --outDir dist",
     "serve": "serve -s dist"
   },
+  "private": false,
   "devDependencies": {
     "@types/node": "^17.0.10",
     "@types/react": "^17.0.38",
