@@ -24,7 +24,7 @@ const DEFAULT_CONFIG = {
   nebulasColors: ["rgb(5,63,157)", "rgb(42,112,25)", "rgb(182,41,44)"],
 };
 
-export const ReactNebula = ({ config }: { config: SystemConfig }) => {
+export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
   const filledConfig = Object.assign({}, DEFAULT_CONFIG, config);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [iter, setIter] = useState(0);
@@ -33,6 +33,7 @@ export const ReactNebula = ({ config }: { config: SystemConfig }) => {
     const handler = () => {
       setIter(iter + 1);
     };
+    if (!window) return;
     window.addEventListener("resize", handler);
     return () => {
       window.removeEventListener("resize", handler);
@@ -107,6 +108,7 @@ export const ReactNebula = ({ config }: { config: SystemConfig }) => {
     };
   }, [iter]);
 
+  if (!window) return <div></div>;
   return (
     <div
       style={{

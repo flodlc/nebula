@@ -1,4 +1,7 @@
-export { smallSolarSystem } from "src/templates/smallSolarSystem";
-export { bigSolarSystem } from "src/templates/bigSolarSystem";
-export type { AstreDescription } from "src/astres/types";
-export { ReactNebula } from "src/ReactNebula";
+import { smallSolarSystem } from "src/templates/smallSolarSystem";
+import { bigSolarSystem } from "src/templates/bigSolarSystem";
+import type { AstreDescription } from "src/astres/types";
+import { ReactNebula } from "src/ReactNebula";
+
+export type {AstreDescription}
+export {smallSolarSystem, bigSolarSystem, ReactNebula}
