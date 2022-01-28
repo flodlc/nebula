@@ -1,6 +1,6 @@
 {
   "name": "@flodlc/nebula",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
@@ -12,9 +12,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "buildPlayground": "vite build",
-    "build": "vite build --config vite-build.config.ts && yarn build:types",
-    "build:types": "yarn tsc --emitDeclarationOnly --outDir dist",
+    "build": "vite build",
+    "package": "vite build --config vite-build.config.ts && yarn packages:types",
+    "packages:types": "yarn tsc --emitDeclarationOnly --outDir dist",
     "serve": "serve -s dist"
   },
   "private": false,
