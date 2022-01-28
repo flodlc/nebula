@@ -1,7 +1,7 @@
-import { AstreDescription } from "src/astres/types";
+import { PlanetDescription, SunDescription } from "src/astres/types";
 
 export type SystemConfig = {
-  astres?: AstreDescription[];
+  astres?: (PlanetDescription | SunDescription)[];
   scale?: number;
   speed?: number;
   starsCount?: number;

@@ -1,6 +1,30 @@
-export type AstreDescription = {
+export type NubulaDescription = {
+  type: "nebula";
+  intensity?: number;
+} & BaseAstreDescription;
+
+export type PlanetDescription = {
+  type: "planet";
+  intensity?: number;
+} & BaseAstreDescription;
+
+export type SunDescription = {
+  type: "sun";
+  intensity?: number;
+} & BaseAstreDescription;
+
+export type StarDescription = {
+  type: "star";
+  intensity?: number;
+} & BaseAstreDescription;
+
+export type GalaxyDescription = {
+  type: "galaxy";
+  intensity?: number;
+} & BaseAstreDescription;
+
+type BaseAstreDescription = {
   name: string;
-  type: "galaxy" | "star" | "planet" | "sun" | "nebula";
   width: number;
   rotateSpeed: number;
   distance: number;
@@ -8,6 +32,13 @@ export type AstreDescription = {
   origin?: string;
   startAngle?: number;
 };
+
+export type AstreDescription =
+  | NubulaDescription
+  | PlanetDescription
+  | SunDescription
+  | StarDescription
+  | GalaxyDescription;
 
 export interface Drawable {
   draw: () => void;

@@ -2,6 +2,8 @@ import { Astre } from "src/astres/Astre";
 import { Drawable } from "src/astres/types";
 
 export class Nebula extends Astre {
+  intensity: number;
+
   constructor({
     ctx,
     width,
@@ -10,6 +12,7 @@ export class Nebula extends Astre {
     rgb,
     origin,
     startAngle = Math.random() * 360,
+    intensity,
   }: {
     ctx: CanvasRenderingContext2D;
     width: number;
@@ -19,6 +22,7 @@ export class Nebula extends Astre {
     origin?: Drawable;
     invisible?: boolean;
     startAngle?: number;
+    intensity: number;
   }) {
     super({
       ctx,
@@ -29,12 +33,13 @@ export class Nebula extends Astre {
       distance,
       rotateSpeed,
     });
+    this.intensity = intensity;
   }
 
   draw() {
     this.rotate();
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width * 10, 0, Math.PI * 2);
+    this.ctx.arc(...this.getOriginCoords(), this.width * 7, 0, Math.PI * 2);
     this.ctx.closePath();
     this.ctx.shadowBlur = 0;
 
@@ -44,11 +49,13 @@ export class Nebula extends Astre {
       originCoords[1],
       0,
       ...originCoords,
-      this.width * 10
+      this.width * 7
     );
     gradient.addColorStop(
       0,
-      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.038)`
+      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, ${
+        this.intensity / 100
+      })`
     );
     gradient.addColorStop(
       1,
