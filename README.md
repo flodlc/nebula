@@ -1,5 +1,5 @@
 ## Nebula
-### Nebula is a lightweight (1kb compressed) JavaScript library for creating universe animations with React.
+### Nebula is a lightweight (1kb compressed) JavaScript library for creating beautifull universe animations with React / Next / Gatsby.
 Including configurable Stars, Nebulas, Comets, Planets and Suns.  
 Compatible with SSR
 
@@ -13,7 +13,7 @@ Compatible with SSR
 npm install @flodlc/nebula
 ```
 
-### `Usage`
+### `Basic usage`
 ```javascript
 import { ReactNebula, smallSolarSystem, bigSolarSystem } from "@flodlc/nebula";
 
