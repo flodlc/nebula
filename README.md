@@ -1,9 +1,9 @@
 ## Nebula
-### Nebula is a lightweight JavaScript library for creating univers animations with React.
+### Nebula is a lightweight JavaScript library for creating universe animations with React.
 Including configurable Stars, Nebulas, Comets, Planets and Suns.  
 Compatible with SSR
 
-<img src="demo.jpg" />
+<img src="https://raw.githubusercontent.com/flodlc/nebula/master/demo.jpg" />
 
 ### `Installation`
 ```
