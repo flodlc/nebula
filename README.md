@@ -11,7 +11,7 @@ npm install @flodlc/nebula
 ```
 
 ### `Usage`
-```
+```javascript
 import { ReactNebula, smallSolarSystem, bigSolarSystem } from "@flodlc/nebula";
 
 export default App = () => {
