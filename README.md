@@ -12,17 +12,29 @@ npm install @flodlc/nebula
 
 ### `Usage`
 ```
-<ReactNebula config={config}/>
-```
+import { ReactNebula, smallSolarSystem, bigSolarSystem } from "@flodlc/nebula";
 
+export default App = () => {
+    return (
+        <>
+            <ReactNebula/>
+            <ReactNebula config={...}/>
+            <ReactNebula config={{astres: smallSolarSystem}}/>
+            <ReactNebula config={{astres: bigSolarSystem}}/>
+        </>
+    )
+}
+ ```
+
+The canvas is positioned ``absolute`` and takes the size of its parent.
 ### `Config`
-key | option type / notes | default
-----|---------|------
-`astres` | `AstreDescription[]` | `[]`
+key | option type | default
+---|-----------|---
+`astres` | `AstreDescription[]` `smallSolarSystem` or `bigSolarSystem` (see Usage) | `[]`
 `scale` | `number` | `1`
 `speed` | `number` | `1`
 `starsCount` | `number` | `200`
-`starsColor` | `string` | `#ffffff` (white)
+`starsColor` | `string` | `#ffffff`
 `starsRotationSpeed` | `number` | `5`
 `cometFrequence` | `number` | `3`
 `nebulasIntensity` | `number` | `8`
