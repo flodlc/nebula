@@ -1,6 +1,6 @@
 {
   "name": "@flodlc/nebula",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
