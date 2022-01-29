@@ -4,7 +4,7 @@ Including configurable Stars, Nebulas, Comets, Planets and Suns.
 Compatible with SSR
 
 <a href="https://nebula-demo.vercel.app/">
-    <img src="https://raw.githubusercontent.com/flodlc/nebula/master/demo.jpg" />
+    <img src="https://raw.githubusercontent.com/flodlc/nebula/master/demo_image.jpg" />
 </a>
 <a href="https://nebula-demo.vercel.app/">Demo page</a>
 
