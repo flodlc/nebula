@@ -15,7 +15,7 @@ npm install @flodlc/nebula
 
 ### `Basic usage`
 ```javascript
-import { ReactNebula, smallSolarSystem, bigSolarSystem } from "@flodlc/nebula";
+import { ReactNebula } from "@flodlc/nebula";
 
 export default App = () => {
     return (
@@ -35,8 +35,6 @@ export default App = () => {
                 solarSystemDistance: 65,
                 solarSystemRotationSpeed: 100
             }}/>
-            <ReactNebula config={{astres: smallSolarSystem}}/>
-            <ReactNebula config={{astres: bigSolarSystem}}/>
         </>
     )
 }
