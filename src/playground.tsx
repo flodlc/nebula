@@ -12,9 +12,10 @@ export const Playground = () => {
           justifyContent: "center",
         }}
       >
-        <ReactNebula />
+        <ReactNebula config={{ solarSystemDistance: 70 }} />
         <div className="card">
           <h1
+            className="gradiant"
             style={{
               fontSize: 90,
               marginBottom: "10px",
@@ -24,7 +25,7 @@ export const Playground = () => {
           </h1>
           <p
             style={{
-              fontFamily: "arial",
+              fontFamily: "monospace, arial",
               margin: 0,
               marginBottom: "15px",
               lineHeight: 1.4,

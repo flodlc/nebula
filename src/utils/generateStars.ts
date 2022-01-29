@@ -14,7 +14,7 @@ export const generateStars = ({
     type: "star",
     width: 0.1 * Math.random(),
     distance: 120 * Math.pow(Math.random() * Math.random(), 1 / 2),
-    rotateSpeed: rotationSpeed * 0.0025 + Math.random() * 0.02,
+    rotateSpeed: rotationSpeed * 0.01 + Math.random() * rotationSpeed * 0.01,
     rgb: parseColor(color),
   }));
 };
