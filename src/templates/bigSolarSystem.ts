@@ -1,6 +1,4 @@
-import { PlanetDescription, SunDescription } from "src/astres/types";
-
-export const bigSolarSystem: (PlanetDescription | SunDescription)[] = [
+export const bigSolarSystem = [
   {
     name: "Sun",
     type: "sun",

@@ -1,5 +1,6 @@
 import { Astre } from "src/astres/Astre";
 import { Drawable } from "src/astres/types";
+import { roundCoords } from "src/utils/roundCoords";
 
 export class Nebula extends Astre {
   intensity: number;
@@ -39,17 +40,16 @@ export class Nebula extends Astre {
   draw() {
     this.rotate();
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width * 7, 0, Math.PI * 2);
+    const orginalCoords = roundCoords(this.getOriginCoords());
+    this.ctx.arc(...orginalCoords, Math.round(this.width * 10), 0, Math.PI * 2);
     this.ctx.closePath();
     this.ctx.shadowBlur = 0;
 
-    const originCoords = this.getOriginCoords();
     const gradient = this.ctx.createRadialGradient(
-      originCoords[0],
-      originCoords[1],
+      ...orginalCoords,
       0,
-      ...originCoords,
-      this.width * 7
+      ...orginalCoords,
+      Math.round(this.width * 7)
     );
     gradient.addColorStop(
       0,

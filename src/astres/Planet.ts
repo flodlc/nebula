@@ -1,5 +1,6 @@
 import { Astre } from "src/astres/Astre";
 import { Drawable } from "src/astres/types";
+import { roundCoords } from "src/utils/roundCoords";
 
 export class Planet extends Astre {
   constructor({
@@ -36,22 +37,19 @@ export class Planet extends Astre {
 
   draw() {
     this.rotate();
+    this.ctx.shadowBlur = 0;
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width, 0, Math.PI * 2);
+    const orginalCoords = roundCoords(this.getOriginCoords());
+    this.ctx.arc(...orginalCoords, Math.round(this.width), 0, Math.PI * 2);
     this.ctx.fillStyle = "black";
     this.ctx.fill();
     this.ctx.closePath();
-    this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width, 0, Math.PI * 2);
-    this.ctx.closePath();
-    this.ctx.shadowBlur = 0;
-    const originCoords = this.getOriginCoords();
     const gradient = this.ctx.createRadialGradient(
-      originCoords[0] - 0.4 * this.width * Math.cos(this.angle),
-      originCoords[1] - 0.4 * this.width * Math.sin(this.angle),
+      Math.round(orginalCoords[0] - 0.4 * this.width * Math.cos(this.angle)),
+      Math.round(orginalCoords[1] - 0.4 * this.width * Math.sin(this.angle)),
       0,
-      ...originCoords,
-      this.width
+      ...orginalCoords,
+      Math.round(this.width)
     );
     gradient.addColorStop(
       0,

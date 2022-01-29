@@ -1,5 +1,6 @@
 import { Astre } from "src/astres/Astre";
 import { Drawable } from "src/astres/types";
+import { roundCoords } from "src/utils/roundCoords";
 
 export class Star extends Astre {
   constructor({
@@ -35,9 +36,10 @@ export class Star extends Astre {
     this.rotate();
     this.ctx.shadowBlur = 0;
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width, 0, Math.PI * 2);
+    const orginalCoords = roundCoords(this.getOriginCoords());
+    this.ctx.arc(...orginalCoords, Math.round(this.width), 0, Math.PI * 2);
     this.ctx.closePath();
-    this.ctx.fillStyle = `rgb(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 1)`;
+    this.ctx.fillStyle = `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 1)`;
     this.ctx.fill();
   }
 }

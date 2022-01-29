@@ -1,5 +1,6 @@
 import { Astre } from "src/astres/Astre";
 import { Drawable } from "src/astres/types";
+import { roundCoords } from "src/utils/roundCoords";
 
 export class Sun extends Astre {
   constructor({
@@ -35,24 +36,25 @@ export class Sun extends Astre {
   }
 
   getGradiant() {
-    const originCoords = this.getOriginCoords();
+    const orginalCoords = this.getOriginCoords();
     const gradient = this.ctx.createRadialGradient(
-      originCoords[0],
-      originCoords[1],
+      Math.round(orginalCoords[0]),
+      Math.round(orginalCoords[1]),
       0,
-      ...originCoords,
-      this.width * 5
+      Math.round(orginalCoords[0]),
+      Math.round(orginalCoords[1]),
+      Math.round(this.width * 5)
     );
     gradient.addColorStop(
       0,
-      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0)`
+      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.17)`
     );
     gradient.addColorStop(
       0.1,
-      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.2)`
+      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.3)`
     );
     gradient.addColorStop(
-      0.17,
+      0.16,
       `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.6)`
     );
     gradient.addColorStop(
@@ -84,17 +86,17 @@ export class Sun extends Astre {
 
   draw() {
     this.rotate();
-
+    this.ctx.shadowBlur = 0;
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width, 0, Math.PI * 2);
+    const orginalCoords = roundCoords(this.getOriginCoords());
+    this.ctx.arc(...orginalCoords, Math.round(this.width), 0, Math.PI * 2);
     this.ctx.fillStyle = "white";
     this.ctx.fill();
     this.ctx.closePath();
     this.ctx.beginPath();
-    this.ctx.arc(...this.getOriginCoords(), this.width * 5, 0, Math.PI * 2);
+    this.ctx.arc(...orginalCoords, Math.round(this.width * 5), 0, Math.PI * 2);
     this.ctx.closePath();
-    this.ctx.shadowColor = "rgb(0, 0, 0, 0.3)";
-    this.ctx.shadowBlur = 6;
+    this.ctx.shadowBlur = 0;
     this.ctx.fillStyle = this.getGradiant();
     this.ctx.fill();
   }

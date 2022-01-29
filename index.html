@@ -3,7 +3,45 @@
 <head>
     <meta charset="UTF-8" />
     <title>Example Application with Vite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Staatliches&display=swap" rel="stylesheet">
 </head>
+<style rel="stylesheet">
+    .card {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Bowlby One SC,cursive;
+        z-index: 1;
+        text-align: center;
+        position: relative;
+    }
+    .button {
+        text-decoration: none;
+        font-family: Source Code Pro,monospace;
+        color: #fff;
+        margin-top: 25px;
+        padding: 12px 25px;
+        outline: none;
+        border: 1px solid #fff;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 13px 13px 0 0 rgb(0 0 0 / 40%);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: box-shadow .3s,background-color .3s,color .3s;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .button:hover {
+        background: white;
+        color: #221e36;
+    }
+</style>
 <body>
 <div id="app"></div>
 <script type="module" src="/src/main.tsx"></script>
