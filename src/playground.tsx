@@ -12,7 +12,13 @@ export const Playground = () => {
           justifyContent: "center",
         }}
       >
-        <ReactNebula config={{ solarSystemDistance: 70 }} />
+        <ReactNebula
+          config={{
+            solarSystemDistance: 70,
+            nebulasIntensity: 10,
+            starsCount: 350,
+          }}
+        />
         <div className="card">
           <h1
             className="gradiant"
