@@ -37,8 +37,8 @@ export const Playground = () => {
               lineHeight: 1.4,
             }}
           >
-            Nebula is a lightweight JavaScript library <br /> for creating
-            beautifull universe animations
+            Nebula is a lightweight JavaScript library <br /> that creates
+            beautiful universe animations
           </p>
           <a className={"button"} href="https://github.com/flodlc/nebula">
             <svg
