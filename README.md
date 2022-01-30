@@ -1,5 +1,5 @@
 ## Nebula
-### Nebula is a lightweight (1kb compressed) JavaScript library for creating beautifull universe animations with React / Next / Gatsby.
+### Nebula is a lightweight (1kb compressed) JavaScript library that creates beautiful universe animations with React / Next / Gatsby.
 Including configurable Stars, Nebulas, Comets, Planets and Suns.  
 Compatible with SSR
 
@@ -43,12 +43,12 @@ The canvas is positioned ``absolute`` and takes the size of its parent.
 ### `Config`
 key | option type | default | Comment
 ---|-----------|---|---
-`starsCount` | `number` | `350` | Recommended to keep smaller than `1000`
+`starsCount` | `number` | `350` | Recommended: < `1000`
 `starsColor` | `string` | `#ffffff`
 `starsRotationSpeed` | `number` | `3`
-`cometFrequence` | `number` | `2` | Value `0` disables the comets
+`cometFrequence` | `number` | `10` | `0` disables the comets
 `nebulasIntensity` | `number` | `10`
 `nebulasColors` | `string[]` accept rgb and hex | `["rgb(5,63,157)", "rgb(42,112,25)", "rgb(182,41,44)"]`
-`solarSystemScale` | `number` | `1` | Value `0` hides the solar system
-`solarSystemDistance` | `number` | `65` | Values greater than `100` can be out of screen 
+`solarSystemScale` | `number` | `1` | `0` hides the solar system
+`solarSystemDistance` | `number` | `65` |  Recommended: < `100`
 `solarSystemRotationSpeed` | `number` | `100`

@@ -6,10 +6,10 @@ export abstract class Astre implements Drawable {
   rgb: [number, number, number];
   rotateSpeed: number;
   angle: number;
-  origin?: Drawable;
+  origin?: Astre;
   relativeDistance: number;
 
-  constructor({
+  protected constructor({
     ctx,
     width,
     rotateSpeed,
@@ -23,7 +23,7 @@ export abstract class Astre implements Drawable {
     rotateSpeed: number;
     distance: number;
     rgb: [number, number, number];
-    origin?: Drawable;
+    origin?: Astre;
     invisible?: boolean;
     startAngle?: number;
   }) {

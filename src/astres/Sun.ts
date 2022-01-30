@@ -1,5 +1,4 @@
 import { Astre } from "src/astres/Astre";
-import { Drawable } from "src/astres/types";
 import { roundCoords } from "src/utils/roundCoords";
 
 export class Sun extends Astre {
@@ -17,7 +16,7 @@ export class Sun extends Astre {
     rotateSpeed: number;
     distance: number;
     rgb: [number, number, number];
-    origin?: Drawable;
+    origin?: Astre;
     startAngle?: number;
   }) {
     super({

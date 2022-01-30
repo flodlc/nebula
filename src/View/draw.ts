@@ -1,4 +1,5 @@
 import { Astre } from "src/astres/Astre";
+import { Drawable } from "src/astres/types";
 
 export const drawAstres = ({
   astres,
@@ -8,7 +9,7 @@ export const drawAstres = ({
   clear = true,
   fps = 60,
 }: {
-  astres: Record<string, Astre>;
+  astres: Record<string, Drawable>;
   canvas: HTMLCanvasElement;
   bgColor?: string;
   play: boolean;
