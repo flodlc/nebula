@@ -1,6 +1,6 @@
 import { Star } from "src/astres/Star";
 import { SystemConfig } from "src/types";
-import { DEFAULT_CONFIG } from "src/DEFAULT_CONFIG";
+import { fillConfig } from "src/DEFAULT_CONFIG";
 import { Comet } from "src/astres/Comet";
 import { Sun } from "src/astres/Sun";
 import { Planet } from "src/astres/Planet";
@@ -36,7 +36,7 @@ export class Nebula {
     element.append(this.canvas);
     this.styleCanvas();
     window.addEventListener("resize", this.onResize);
-    this.config = Object.assign({}, DEFAULT_CONFIG, config);
+    this.config = fillConfig(config);
     this.setConfig(config);
   }
 
@@ -62,7 +62,7 @@ export class Nebula {
   };
 
   setConfig(config: SystemConfig) {
-    this.config = Object.assign({}, DEFAULT_CONFIG, config);
+    this.config = fillConfig(config);
     this.nebulas = generateNebulas({
       nebulas: this.nebulas,
       ctx: this.bgCanvas.getContext("2d") as CanvasRenderingContext2D,

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ReactNebula } from "src/View/ReactNebula";
 import { SystemConfig } from "src/types";
+import { ConfigDashboard } from "src/playground/ConfigDashboard";
+import { fillConfig } from "src/DEFAULT_CONFIG";
 
 export const Playground = () => {
   const [config, setConfig] = useState<SystemConfig>({
@@ -9,10 +11,6 @@ export const Playground = () => {
     starsCount: 350,
   });
 
-  useEffect(() => {
-    console.log((conf: SystemConfig) => setConfig(conf));
-  });
-  console.log("new conf", config);
   return (
     <>
       <div
@@ -23,6 +21,10 @@ export const Playground = () => {
           justifyContent: "center",
         }}
       >
+        <ConfigDashboard
+          config={fillConfig(config)}
+          onUpdate={(config) => setConfig(config)}
+        />
         <ReactNebula config={config} />
         <div className="card">
           <h1

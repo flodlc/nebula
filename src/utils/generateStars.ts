@@ -14,9 +14,13 @@ export const generateStars = ({
   rotationSpeed: number;
   ctx: CanvasRenderingContext2D;
 }) => {
+  let totalStars;
   const missingStars = count - stars.length;
   if (missingStars <= 0) {
-    return stars.slice(0, count);
+    totalStars = stars.slice(0, count).map((star) => {
+      star.rotateSpeed = rotationSpeed;
+      return star;
+    });
   }
   const newStars = new Array(missingStars).fill(0).map(
     () =>
@@ -29,5 +33,13 @@ export const generateStars = ({
         rgb: parseColor(color),
       })
   );
-  return stars.concat(newStars);
+  totalStars = stars.concat(newStars).map((star) => {
+    star.rotateSpeed = rotationSpeed;
+    return star;
+  });
+  return totalStars.map((star) => {
+    star.rotateSpeed =
+      rotationSpeed * 0.01 + Math.random() * rotationSpeed * 0.01;
+    return star;
+  });
 };

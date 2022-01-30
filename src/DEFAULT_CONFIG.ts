@@ -1,3 +1,5 @@
+import { SystemConfig } from "src/types";
+
 export const DEFAULT_CONFIG = {
   starsCount: 350,
   starsColor: "#FFFFFF",
@@ -8,4 +10,8 @@ export const DEFAULT_CONFIG = {
   solarSystemScale: 1,
   solarSystemDistance: 65,
   solarSystemRotationSpeed: 100,
+};
+
+export const fillConfig = (config: SystemConfig) => {
+  return Object.assign({}, DEFAULT_CONFIG, config);
 };
