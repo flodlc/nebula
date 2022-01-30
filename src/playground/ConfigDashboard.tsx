@@ -28,6 +28,7 @@ export const ConfigDashboard = ({
           min: 0,
           max: 50,
           step: 0.1,
+          float: true,
         },
         {
           key: "cometFrequence" as keyof SystemConfig,
@@ -46,6 +47,7 @@ export const ConfigDashboard = ({
           min: 0,
           max: 5,
           step: 0.1,
+          float: true,
         },
         {
           key: "solarSystemDistance" as keyof SystemConfig,
@@ -66,7 +68,13 @@ export const ConfigDashboard = ({
         >
           {item.key}
           <input
-            onChange={(e) => update({ [item.key]: parseFloat(e.target.value) })}
+            onChange={(e) =>
+              update({
+                [item.key]: item.float
+                  ? parseFloat(e.target.value)
+                  : parseInt(e.target.value, 10),
+              })
+            }
             type="range"
             value={config[item.key]}
             min={item.min}
