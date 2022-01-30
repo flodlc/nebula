@@ -46,7 +46,7 @@ key | option type | default | Comment
 `starsCount` | `number` | `350` | Recommended: < `1000`
 `starsColor` | `string` | `#ffffff`
 `starsRotationSpeed` | `number` | `3`
-`cometFrequence` | `number` | `10` | `0` disables the comets
+`cometFrequence` | `number` | `20` | `0` disables the comets
 `nebulasIntensity` | `number` | `10`
 `nebulasColors` | `string[]` accept rgb and hex | `["rgb(5,63,157)", "rgb(42,112,25)", "rgb(182,41,44)"]`
 `solarSystemScale` | `number` | `1` | `0` hides the solar system

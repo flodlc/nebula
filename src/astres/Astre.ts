@@ -1,7 +1,17 @@
-import { Drawable } from "src/astres/types";
+import { Drawable } from "src/astres/Drawable";
 
-export abstract class Astre implements Drawable {
+export type AstreArgs = {
   ctx: CanvasRenderingContext2D;
+  width: number;
+  rotateSpeed: number;
+  distance: number;
+  rgb: [number, number, number];
+  origin?: Astre;
+  invisible?: boolean;
+  startAngle?: number;
+};
+
+export abstract class Astre extends Drawable {
   relativeWidth: number;
   rgb: [number, number, number];
   rotateSpeed: number;
@@ -17,17 +27,8 @@ export abstract class Astre implements Drawable {
     rgb,
     origin,
     startAngle = Math.random() * 360,
-  }: {
-    ctx: CanvasRenderingContext2D;
-    width: number;
-    rotateSpeed: number;
-    distance: number;
-    rgb: [number, number, number];
-    origin?: Astre;
-    invisible?: boolean;
-    startAngle?: number;
-  }) {
-    this.ctx = ctx;
+  }: AstreArgs) {
+    super({ ctx });
     this.relativeWidth = width;
     this.rgb = rgb;
     this.rotateSpeed = rotateSpeed;
@@ -40,28 +41,12 @@ export abstract class Astre implements Drawable {
     this.angle = (this.angle + (Math.PI / 180) * this.rotateSpeed) % 360;
   }
 
-  protected getCanvasWidth() {
-    return this.ctx.canvas.width;
-  }
-
-  protected getCanvasHeight() {
-    return this.ctx.canvas.height;
-  }
-
-  protected get canvasMinSide() {
-    return Math.min(this.getCanvasHeight(), this.getCanvasWidth());
-  }
-
   protected get width() {
     return (this.relativeWidth / 100) * this.canvasMinSide;
   }
 
   protected get distance() {
     return (this.relativeDistance / 100) * this.canvasMinSide;
-  }
-
-  draw() {
-    console.log("should implement");
   }
 
   getAngle(): number {

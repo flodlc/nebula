@@ -1,54 +1,49 @@
-import { Astre } from "src/astres/Astre";
 import { roundCoords } from "src/utils/roundCoords";
+import { Drawable } from "src/astres/Drawable";
 
-export class Nebula extends Astre {
+export class NebulaAstre extends Drawable {
   intensity: number;
+  relativeWidth: number;
+  rgb: [number, number, number];
+  coords: [number, number];
 
   constructor({
     ctx,
     width,
-    rotateSpeed,
-    distance,
     rgb,
-    origin,
-    startAngle = Math.random() * 360,
     intensity,
   }: {
     ctx: CanvasRenderingContext2D;
     width: number;
-    rotateSpeed: number;
-    distance: number;
     rgb: [number, number, number];
-    origin?: Astre;
-    invisible?: boolean;
-    startAngle?: number;
     intensity: number;
   }) {
-    super({
-      ctx,
-      width,
-      rgb,
-      origin,
-      startAngle,
-      distance,
-      rotateSpeed,
-    });
+    super({ ctx });
+    this.relativeWidth = width;
+    this.rgb = rgb;
     this.intensity = intensity;
+    this.coords = roundCoords([
+      Math.random() * this.getCanvasWidth(),
+      Math.random() * this.getCanvasHeight(),
+    ]);
   }
 
-  draw() {
-    this.rotate();
+  getNebulaWidth() {
+    return (this.relativeWidth / 100) * this.canvasMinSide;
+  }
+
+  draw = () => {
     this.ctx.beginPath();
-    const orginalCoords = roundCoords(this.getOriginCoords());
-    this.ctx.arc(...orginalCoords, Math.round(this.width * 10), 0, Math.PI * 2);
+    const width = this.getNebulaWidth();
+    this.ctx.arc(...this.coords, width * 10, 0, Math.PI * 2);
     this.ctx.closePath();
     this.ctx.shadowBlur = 0;
 
     const gradient = this.ctx.createRadialGradient(
-      ...orginalCoords,
+      ...this.coords,
       0,
-      ...orginalCoords,
-      Math.round(this.width * 7)
+      ...this.coords,
+      Math.round(width * 7)
     );
     gradient.addColorStop(
       0,
@@ -63,5 +58,5 @@ export class Nebula extends Astre {
 
     this.ctx.fillStyle = gradient;
     this.ctx.fill();
-  }
+  };
 }

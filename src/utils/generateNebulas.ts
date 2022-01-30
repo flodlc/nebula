@@ -1,23 +1,32 @@
 import { parseColor } from "src/utils/parseColor";
+import { NebulaAstre } from "src/astres/NebulaAstre";
 
 export const generateNebulas = ({
+  ctx,
+  nebulas,
   colors,
   intensity,
 }: {
+  ctx: CanvasRenderingContext2D;
+  nebulas: NebulaAstre[];
   colors: string[];
   intensity: number;
 }) => {
-  return new Array(10).fill(0).flatMap(() => {
-    return colors.map((color) => ({
-      name: `neb_${Math.random()}`,
-      type: "nebula",
-      width: 6 + Math.random() * 5,
-      distance:
-        10 +
-        140 * Math.pow(Math.random() * Math.random() * Math.random(), 1 / 3),
-      rotateSpeed: Math.random() * 0.3,
-      rgb: parseColor(color),
-      intensity,
-    }));
+  if (nebulas.length) {
+    return nebulas.map((nebula) => {
+      nebula.intensity = intensity;
+      return nebula;
+    });
+  }
+  return new Array(8).fill(0).flatMap(() => {
+    return colors.map(
+      (color) =>
+        new NebulaAstre({
+          ctx,
+          width: 6 + Math.random() * 5,
+          rgb: parseColor(color),
+          intensity,
+        })
+    );
   });
 };

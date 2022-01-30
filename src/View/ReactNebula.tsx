@@ -1,26 +1,30 @@
-import React, { useMemo, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { SystemConfig } from "src/types";
 import { DEFAULT_CONFIG } from "src/DEFAULT_CONFIG";
-import { useNebulas } from "src/View/useNebulas";
-import { useAstres } from "src/View/useAstres";
-import { useSize } from "src/View/useSize";
+import { Nebula } from "src/View/Nebula";
 
 export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
-  const filledConfig = useMemo(
-    () => Object.assign({}, DEFAULT_CONFIG, config),
-    [config]
-  );
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const bgCanvasRef = useRef<HTMLCanvasElement>(null);
+  const nebulaRef = useRef<Nebula>();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const size = useSize(wrapperRef);
-  useNebulas({
-    canvasSize: size,
-    canvasRef: bgCanvasRef,
-    config: filledConfig,
-  });
-  useAstres({ canvasSize: size, canvasRef: canvasRef, config: filledConfig });
+  useLayoutEffect(() => {
+    if (nebulaRef.current) {
+      nebulaRef.current?.setConfig(config);
+    }
+  }, [config]);
+
+  useLayoutEffect(() => {
+    if (!nebulaRef.current) {
+      nebulaRef.current = new Nebula({
+        config: Object.assign({}, DEFAULT_CONFIG, config),
+        element: wrapperRef.current as HTMLElement,
+      });
+    }
+    return () => {
+      nebulaRef.current?.destroy();
+      nebulaRef.current = undefined;
+    };
+  }, []);
 
   return (
     <div
@@ -32,29 +36,6 @@ export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
         width: "100%",
         position: "absolute",
       }}
-    >
-      <canvas
-        width={size.width * 2}
-        height={size.height * 2}
-        style={{
-          height: "100%",
-          width: "100%",
-          position: "absolute",
-          willChange: "transform",
-        }}
-        ref={bgCanvasRef}
-      />
-      <canvas
-        width={size.width * 2}
-        height={size.height * 2}
-        style={{
-          height: "100%",
-          width: "100%",
-          position: "absolute",
-          willChange: "transform",
-        }}
-        ref={canvasRef}
-      />
-    </div>
+    />
   );
 };

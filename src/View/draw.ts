@@ -1,19 +1,16 @@
-import { Astre } from "src/astres/Astre";
-import { Drawable } from "src/astres/types";
+import { Drawable } from "src/astres/Drawable";
 
 export const drawAstres = ({
   astres,
   canvas,
   bgColor,
   play,
-  clear = true,
   fps = 60,
 }: {
-  astres: Record<string, Drawable>;
+  astres: Drawable[];
   canvas: HTMLCanvasElement;
   bgColor?: string;
   play: boolean;
-  clear?: boolean;
   fps?: number;
 }) => {
   const width = canvas.width;
@@ -34,17 +31,16 @@ export const drawAstres = ({
       if (timestamp - lastTimestamp < timestep) return;
       lastTimestamp = timestamp;
     }
-    if (clear) {
-      ctx.clearRect(0, 0, width, height);
-    }
+
+    ctx.clearRect(0, 0, width, height);
     if (bgColor) {
       ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, width, height);
     }
-    Object.values(astres).forEach((astre) => astre.draw());
+
+    astres.forEach((astre) => astre.draw());
   };
   drawMainCanvas();
-
   return () => {
     ctx.restore();
     if (animation) {

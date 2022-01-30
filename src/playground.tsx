@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactNebula } from "src/View/ReactNebula";
+import { SystemConfig } from "src/types";
 
 export const Playground = () => {
+  const [config, setConfig] = useState<SystemConfig>({
+    solarSystemDistance: 70,
+    nebulasIntensity: 10,
+    starsCount: 350,
+  });
+
+  useEffect(() => {
+    console.log((conf: SystemConfig) => setConfig(conf));
+  });
+  console.log("new conf", config);
   return (
     <>
       <div
@@ -12,13 +23,7 @@ export const Playground = () => {
           justifyContent: "center",
         }}
       >
-        <ReactNebula
-          config={{
-            solarSystemDistance: 70,
-            nebulasIntensity: 10,
-            starsCount: 350,
-          }}
-        />
+        <ReactNebula config={config} />
         <div className="card">
           <h1
             className="gradiant"

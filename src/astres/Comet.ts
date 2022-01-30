@@ -1,9 +1,9 @@
-import { Drawable } from "src/astres/types";
 import { FPS } from "src/config";
+import { Drawable } from "src/astres/Drawable";
 
 const SPEED = 150;
 
-export class Comet implements Drawable {
+export class Comet extends Drawable {
   ctx: CanvasRenderingContext2D;
   frequence: number;
 
@@ -14,26 +14,9 @@ export class Comet implements Drawable {
     ctx: CanvasRenderingContext2D;
     frequence: number;
   }) {
+    super({ ctx });
     this.ctx = ctx;
     this.frequence = frequence;
-  }
-
-  getOriginCoords() {
-    return [1, 1] as [number, number];
-  }
-  getAngle() {
-    return 1;
-  }
-  getWidth() {
-    return 1;
-  }
-
-  private getCanvasWidth() {
-    return this.ctx.canvas.width;
-  }
-
-  private getCanvasHeight() {
-    return this.ctx.canvas.height;
   }
 
   private showConfig:
@@ -52,8 +35,6 @@ export class Comet implements Drawable {
   private x = 0;
   private y = 0;
   private opacity = 0;
-  private co = 0;
-  private coa = 0;
   private move() {
     if (this.showConfig) {
       this.x += this.speed * Math.cos(this.showConfig.direction);
@@ -72,9 +53,7 @@ export class Comet implements Drawable {
     }
 
     const shouldCreateANewShow = Math.random() > 1 - this.frequence / 100 / FPS;
-    this.co++;
     if (shouldCreateANewShow) {
-      this.coa++;
       const fromAngle = Math.random() * 2 * Math.PI;
       const maxSideSize = Math.max(
         this.getCanvasHeight(),
@@ -100,7 +79,7 @@ export class Comet implements Drawable {
     }
   }
 
-  draw() {
+  draw = () => {
     this.move();
     if (!this.showConfig) return;
     this.ctx.save();
@@ -109,5 +88,5 @@ export class Comet implements Drawable {
     this.ctx.globalAlpha = this.opacity;
     this.ctx.fill();
     this.ctx.restore();
-  }
+  };
 }

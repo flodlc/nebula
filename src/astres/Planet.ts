@@ -1,40 +1,16 @@
-import { Astre } from "src/astres/Astre";
+import {Astre, AstreArgs} from "src/astres/Astre";
 import { roundCoords } from "src/utils/roundCoords";
 
 export class Planet extends Astre {
   constructor({
-    ctx,
-    width,
-    rotateSpeed,
-    distance,
-    rgb,
-    origin,
-    startAngle = Math.random() * 360,
-  }: {
-    ctx: CanvasRenderingContext2D;
-    width: number;
-    rotateSpeed: number;
-    distance: number;
-    rgb: [number, number, number];
-    origin?: Astre;
-    startAngle?: number;
-  }) {
+    ...args
+  }: AstreArgs) {
     super({
-      ctx,
-      width,
-      rotateSpeed,
-      distance,
-      rgb,
-      origin,
-      startAngle,
+      ...args,
     });
   }
 
-  rotate() {
-    this.angle = (this.angle + (Math.PI / 180) * this.rotateSpeed) % 360;
-  }
-
-  draw() {
+  draw = () => {
     this.rotate();
     this.ctx.shadowBlur = 0;
     this.ctx.beginPath();
@@ -62,5 +38,5 @@ export class Planet extends Astre {
 
     this.ctx.fillStyle = gradient;
     this.ctx.fill();
-  }
+  };
 }
