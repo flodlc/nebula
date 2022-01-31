@@ -14,18 +14,18 @@ export const generateNebulas = ({
 }) => {
   if (nebulas.length) {
     return nebulas.map((nebula) => {
-      nebula.intensity = intensity;
+      nebula.intensity = intensity * 1.8;
       return nebula;
     });
   }
-  return new Array(8).fill(0).flatMap(() => {
+  return new Array(4).fill(0).flatMap(() => {
     return colors.map(
       (color) =>
         new NebulaAstre({
           ctx,
           width: 6 + Math.random() * 5,
           rgb: parseColor(color),
-          intensity,
+          intensity: intensity * 1.8,
         })
     );
   });

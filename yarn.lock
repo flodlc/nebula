@@ -333,6 +333,11 @@ color-name@1.1.3:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
+context-filter-polyfill@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/context-filter-polyfill/-/context-filter-polyfill-0.2.4.tgz#ecf88d3197e7c3a47e9a7ae2d5167b703945a5d4"
+  integrity sha512-LDZ3WiTzo6kIeJM7j8kPSgZf+gbD1cV1GaLyYO8RWvAg25cO3zUo3d2KizO0w9hAezNwz7tTbuWKpPdvLWzKqQ==
+
 convert-source-map@^1.7.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.8.0.tgz#f3373c32d21b4d780dd8004514684fb791ca4369"

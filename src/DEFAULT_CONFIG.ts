@@ -4,12 +4,13 @@ export const DEFAULT_CONFIG = {
   starsCount: 350,
   starsColor: "#FFFFFF",
   starsRotationSpeed: 3,
-  cometFrequence: 20,
+  cometFrequence: 15,
   nebulasIntensity: 10,
   nebulasColors: ["rgb(27,2,140)", "rgb(22,91,2)", "#880554"],
-  solarSystemScale: 1,
-  solarSystemDistance: 65,
-  solarSystemRotationSpeed: 100,
+  sunScale: 1,
+  planetsScale: 1,
+  solarSystemOrbite: 65,
+  solarSystemSpeedOrbit: 100,
 };
 
 export const fillConfig = (config: SystemConfig) => {

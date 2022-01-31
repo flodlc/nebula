@@ -11,6 +11,7 @@ import { generateSolarSytem } from "src/utils/generateSolarSytem";
 import { generateComet } from "src/utils/generateComet";
 import { generateNebulas } from "src/utils/generateNebulas";
 import { FPS } from "src/config";
+import "context-filter-polyfill";
 
 export class Nebula {
   private config: Required<SystemConfig>;
@@ -48,12 +49,12 @@ export class Nebula {
   private styleCanvas = () => {
     this.canvas.setAttribute(
       "style",
-      "width: 100%;height: 100%;position:absolute;"
+      "width: 100%;height: 100%;position:absolute;top: 0;left:0;"
     );
 
     this.bgCanvas.setAttribute(
       "style",
-      "width: 100%;height: 100%;position:absolute;"
+      "width: 100%;height: 100%;position:absolute;top: 0;left:0;"
     );
     this.canvas.width = this.element.offsetWidth * 2;
     this.canvas.height = this.element.offsetHeight * 2;
@@ -78,10 +79,11 @@ export class Nebula {
     });
     this.planets = generateSolarSytem({
       planets: this.planets,
-      scale: this.config.solarSystemScale,
+      sunScale: this.config.sunScale,
+      scale: this.config.planetsScale,
       ctx: this.canvas.getContext("2d") as CanvasRenderingContext2D,
-      rotationSpeed: this.config.solarSystemRotationSpeed,
-      distance: this.config.solarSystemDistance,
+      rotationSpeed: this.config.solarSystemSpeedOrbit,
+      distance: this.config.solarSystemOrbite,
     });
     this.comets = generateComet({
       ctx: this.canvas.getContext("2d") as CanvasRenderingContext2D,

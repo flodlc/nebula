@@ -3,7 +3,7 @@ import { Drawable } from "src/astres/Drawable";
 export type AstreArgs = {
   ctx: CanvasRenderingContext2D;
   width: number;
-  rotateSpeed: number;
+  speed: number;
   distance: number;
   rgb: [number, number, number];
   origin?: Astre;
@@ -14,7 +14,7 @@ export type AstreArgs = {
 export abstract class Astre extends Drawable {
   relativeWidth: number;
   rgb: [number, number, number];
-  rotateSpeed: number;
+  speed: number;
   angle: number;
   origin?: Astre;
   relativeDistance: number;
@@ -22,7 +22,7 @@ export abstract class Astre extends Drawable {
   protected constructor({
     ctx,
     width,
-    rotateSpeed,
+    speed,
     distance,
     rgb,
     origin,
@@ -31,14 +31,14 @@ export abstract class Astre extends Drawable {
     super({ ctx });
     this.relativeWidth = width;
     this.rgb = rgb;
-    this.rotateSpeed = rotateSpeed;
+    this.speed = speed;
     this.relativeDistance = distance;
     this.origin = origin;
     this.angle = (Math.PI / 180) * (startAngle ?? 0);
   }
 
   protected rotate() {
-    this.angle = (this.angle + (Math.PI / 180) * this.rotateSpeed) % 360;
+    this.angle = (this.angle + (Math.PI / 180) * this.speed) % 360;
   }
 
   protected get width() {

@@ -6,7 +6,6 @@ import { Nebula } from "src/View/Nebula";
 export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
   const nebulaRef = useRef<Nebula>();
   const wrapperRef = useRef<HTMLDivElement>(null);
-
   useLayoutEffect(() => {
     if (nebulaRef.current) {
       nebulaRef.current?.setConfig(config);
@@ -16,7 +15,7 @@ export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
   useLayoutEffect(() => {
     if (!nebulaRef.current) {
       nebulaRef.current = new Nebula({
-        config: fillConfig(config),
+        config,
         element: wrapperRef.current as HTMLElement,
       });
     }

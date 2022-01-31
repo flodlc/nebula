@@ -20,7 +20,7 @@ export class Sun extends Astre {
     );
     gradient.addColorStop(
       0,
-      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.17)`
+      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.2)`
     );
     gradient.addColorStop(
       0.1,

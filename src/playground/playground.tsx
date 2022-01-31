@@ -6,7 +6,7 @@ import { fillConfig } from "src/DEFAULT_CONFIG";
 
 export const Playground = () => {
   const [config, setConfig] = useState<SystemConfig>({
-    solarSystemDistance: 70,
+    solarSystemOrbite: 70,
     nebulasIntensity: 10,
     starsCount: 350,
   });
@@ -30,7 +30,7 @@ export const Playground = () => {
           <h1
             className="gradiant"
             style={{
-              fontSize: 90,
+              fontSize: "5rem",
               marginBottom: "10px",
             }}
           >
@@ -49,7 +49,7 @@ export const Playground = () => {
           </p>
           <a className={"button"} href="https://github.com/flodlc/nebula">
             <svg
-              height="18"
+              height="1em"
               fill="currentColor"
               aria-hidden="true"
               viewBox="0 0 16 16"

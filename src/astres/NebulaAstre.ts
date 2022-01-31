@@ -35,7 +35,7 @@ export class NebulaAstre extends Drawable {
   draw = () => {
     this.ctx.beginPath();
     const width = this.getNebulaWidth();
-    this.ctx.arc(...this.coords, width * 10, 0, Math.PI * 2);
+    this.ctx.arc(...this.coords, Math.round(width * 10), 0, Math.PI * 2);
     this.ctx.closePath();
     this.ctx.shadowBlur = 0;
 
@@ -53,7 +53,7 @@ export class NebulaAstre extends Drawable {
     );
     gradient.addColorStop(
       1,
-      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0)`
+      `rgba(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, ${0})`
     );
 
     this.ctx.fillStyle = gradient;

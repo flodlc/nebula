@@ -4,8 +4,9 @@ export type SystemConfig = {
   starsRotationSpeed?: number;
   nebulasIntensity?: number;
   nebulasColors?: string[];
-  solarSystemScale?: number;
-  solarSystemDistance?: number;
-  solarSystemRotationSpeed?: number;
+  sunScale?: number;
+  planetsScale?: number;
+  solarSystemOrbite?: number;
+  solarSystemSpeedOrbit?: number;
   cometFrequence?: number;
 };
