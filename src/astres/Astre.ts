@@ -53,6 +53,10 @@ export abstract class Astre extends Drawable {
     return this.angle;
   }
 
+  getRefAngle(): number {
+    return this.getAngle() + (this.origin?.getAngle() ?? 0);
+  }
+
   getWidth(): number {
     return this.width;
   }

@@ -4,21 +4,25 @@ import { fillConfig } from "src/DEFAULT_CONFIG";
 import { Comet } from "src/astres/Comet";
 import { Sun } from "src/astres/Sun";
 import { Planet } from "src/astres/Planet";
-import { NebulaAstre } from "src/astres/NebulaAstre";
+import { NebulaColoration } from "src/astres/NebulaColoration";
 import { generateStars } from "src/utils/generateStars";
-import { drawAstres } from "src/View/draw";
+import { drawOnCanvas } from "src/View/drawOnCanvas";
 import { generateSolarSytem } from "src/utils/generateSolarSytem";
 import { generateComet } from "src/utils/generateComet";
-import { generateNebulas } from "src/utils/generateNebulas";
+import { generateNebulaColoration } from "src/utils/generateNebulaColoration";
 import { FPS } from "src/config";
-import "context-filter-polyfill";
+
+const CANVAS_STYLE =
+  "width: 100%;height: 100%;position:absolute;will-change:transform;top: 0;left:0;";
 
 export class Nebula {
   private config: Required<SystemConfig>;
   private element: HTMLElement;
-  private bgCanvas: HTMLCanvasElement;
-  private canvas: HTMLCanvasElement;
-  private nebulas: NebulaAstre[] = [];
+  private readonly bgCanvas: HTMLCanvasElement;
+  private readonly canvas: HTMLCanvasElement;
+  private cancelAnimations: (() => void)[] = [];
+
+  private coloration?: NebulaColoration;
   private stars: Star[] = [];
   private comets: Comet[] = [];
   private planets: (Sun | Planet)[] = [];
@@ -31,8 +35,8 @@ export class Nebula {
     element: HTMLElement;
   }) {
     this.element = element;
-    this.canvas = document.createElement("CANVAS") as HTMLCanvasElement;
     this.bgCanvas = document.createElement("CANVAS") as HTMLCanvasElement;
+    this.canvas = document.createElement("CANVAS") as HTMLCanvasElement;
     element.append(this.bgCanvas);
     element.append(this.canvas);
     this.styleCanvas();
@@ -47,28 +51,20 @@ export class Nebula {
   };
 
   private styleCanvas = () => {
-    this.canvas.setAttribute(
-      "style",
-      "width: 100%;height: 100%;position:absolute;top: 0;left:0;"
-    );
-
-    this.bgCanvas.setAttribute(
-      "style",
-      "width: 100%;height: 100%;position:absolute;top: 0;left:0;"
-    );
+    this.bgCanvas.setAttribute("style", CANVAS_STYLE);
+    this.bgCanvas.width = this.element.offsetWidth / 3;
+    this.bgCanvas.height = this.element.offsetHeight / 3;
+    this.canvas.setAttribute("style", CANVAS_STYLE);
     this.canvas.width = this.element.offsetWidth * 2;
     this.canvas.height = this.element.offsetHeight * 2;
-    this.bgCanvas.width = this.element.offsetWidth * 2;
-    this.bgCanvas.height = this.element.offsetHeight * 2;
   };
 
   setConfig(config: SystemConfig) {
     this.config = fillConfig(config);
-    this.nebulas = generateNebulas({
-      nebulas: this.nebulas,
+    this.coloration = generateNebulaColoration({
+      coloration: this.coloration,
       ctx: this.bgCanvas.getContext("2d") as CanvasRenderingContext2D,
       intensity: this.config.nebulasIntensity,
-      colors: this.config.nebulasColors,
     });
     this.stars = generateStars({
       stars: this.stars,
@@ -96,26 +92,24 @@ export class Nebula {
     this.draw();
   }
 
-  private cancelAnimations: (() => void)[] = [];
   draw() {
     this.cancelAnimations.forEach((callback) => callback());
     this.cancelAnimations = [
-      drawAstres({
-        astres: this.nebulas,
-        play: false,
+      drawOnCanvas({
         canvas: this.bgCanvas,
-        bgColor: "rgb(8, 8, 8)",
+        drawings: [this.coloration as NebulaColoration],
+        bgColor: this.config.bgColor,
       }),
-      drawAstres({
-        astres: [...this.stars, ...this.comets, ...this.planets],
-        fps: FPS,
-        play: true,
+      drawOnCanvas({
         canvas: this.canvas,
+        drawings: [...this.stars, ...this.comets, ...this.planets],
+        fps: FPS,
       }),
     ];
   }
 
   destroy() {
+    window.removeEventListener("resize", this.onResize);
     this.cancelAnimations.forEach((callback) => callback());
     this.cancelAnimations = [];
     this.bgCanvas.parentElement?.removeChild(this.bgCanvas);

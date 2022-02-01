@@ -21,11 +21,12 @@ import { createNebula } from "@flodlc/nebula";
 
 <div id="nebula-element"></div>
 
-const element = document.getElementById("nebula-element")
+const element = document.getElementById("nebula-element");
+
 const nebula = createNebula(element, {
     starsCount: 250,
     starsRotationSpeed: 3,
-    solarSystemScale: 1,
+    nebulasIntensity: 8,
     ...
 });
 // ... if needed:
@@ -46,11 +47,11 @@ export default App = () => {
             <ReactNebula config={{
                 starsCount: 250,
                 starsRotationSpeed: 3,
-                solarSystemScale: 1,
+                nebulasIntensity: 8,
                 ...
             }}/>
         </>
-    )
+    );
 }
  ```
 The canvas is positioned ``absolute`` and takes the size of its parent.
@@ -62,7 +63,6 @@ key | option type | default | Comment
 `starsRotationSpeed` | `number` | `3`
 `cometFrequence` | `number` | `15` | `0` disables the comets
 `nebulasIntensity` | `number` | `10`
-`nebulasColors` | `string[]` accept rgb and hex | `["rgb(5,63,157)", "rgb(42,112,25)", "rgb(182,41,44)"]`
 `sunScale` | `number` | `1` | `0` hides the Sun
 `planetsScale` | `number` | `1` | `0` hides the planets
 `solarSystemOrbite` | `number` | `65` |  Recommended: < `100`

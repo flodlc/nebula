@@ -1,16 +1,14 @@
 import { Drawable } from "src/astres/Drawable";
 
-export const drawAstres = ({
-  astres,
+export const drawOnCanvas = ({
   canvas,
+  drawings,
   bgColor,
-  play,
-  fps = 60,
+  fps = 0,
 }: {
-  astres: Drawable[];
   canvas: HTMLCanvasElement;
+  drawings: Drawable[];
   bgColor?: string;
-  play: boolean;
   fps?: number;
 }) => {
   const width = canvas.width;
@@ -21,11 +19,11 @@ export const drawAstres = ({
   ctx.save();
   let animation: number | undefined;
 
-  let lastTimestamp = 0,
-    timestep = 1000 / fps; // ms for each frame
+  let lastTimestamp = 0;
+  let timestep = 1000 / fps;
 
   const drawMainCanvas = () => {
-    if (play) {
+    if (fps) {
       animation = requestAnimationFrame(drawMainCanvas);
       const timestamp = Date.now();
       if (timestamp - lastTimestamp < timestep) return;
@@ -38,9 +36,11 @@ export const drawAstres = ({
       ctx.fillRect(0, 0, width, height);
     }
 
-    astres.forEach((astre) => astre.draw());
+    drawings.forEach((drawing) => drawing.draw());
   };
+
   drawMainCanvas();
+
   return () => {
     ctx.restore();
     if (animation) {

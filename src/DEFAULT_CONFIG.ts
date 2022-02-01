@@ -1,12 +1,12 @@
 import { SystemConfig } from "src/types";
 
 export const DEFAULT_CONFIG = {
-  starsCount: 350,
+  starsCount: 400,
   starsColor: "#FFFFFF",
   starsRotationSpeed: 3,
   cometFrequence: 15,
   nebulasIntensity: 10,
-  nebulasColors: ["rgb(27,2,140)", "rgb(22,91,2)", "#880554"],
+  bgColor: "rgb(8,8,8)",
   sunScale: 1,
   planetsScale: 1,
   solarSystemOrbite: 65,

@@ -25,3 +25,10 @@ function hexToRGB(color: string) {
 
   return "rgb(" + +r + "," + +g + "," + +b + ")";
 }
+
+export const getRGB = (
+  rgbChannels: [number, number, number],
+  opacity: number
+) => {
+  return `rgba(${rgbChannels[0]}, ${rgbChannels[1]}, ${rgbChannels[2]}, ${opacity})`;
+};

@@ -3,7 +3,7 @@ export type SystemConfig = {
   starsColor?: string;
   starsRotationSpeed?: number;
   nebulasIntensity?: number;
-  nebulasColors?: string[];
+  bgColor?: string;
   sunScale?: number;
   planetsScale?: number;
   solarSystemOrbite?: number;

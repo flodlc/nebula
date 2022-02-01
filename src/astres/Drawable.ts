@@ -18,4 +18,8 @@ export abstract class Drawable {
   protected get canvasMinSide() {
     return Math.min(this.getCanvasHeight(), this.getCanvasWidth());
   }
+
+  protected get canvasMaxSide() {
+    return Math.max(this.getCanvasHeight(), this.getCanvasWidth());
+  }
 }

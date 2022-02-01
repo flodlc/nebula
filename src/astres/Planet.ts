@@ -1,5 +1,6 @@
 import { Astre, AstreArgs } from "src/astres/Astre";
 import { roundCoords } from "src/utils/roundCoords";
+import { getRGB } from "src/utils/parseColor";
 
 export class Planet extends Astre {
   constructor({ ...args }: AstreArgs) {
@@ -12,37 +13,24 @@ export class Planet extends Astre {
     this.rotate();
     this.ctx.shadowBlur = 0;
     this.ctx.beginPath();
-    const orginalCoords = roundCoords(this.getOriginCoords());
-    this.ctx.arc(...orginalCoords, Math.round(this.width), 0, Math.PI * 2);
+    const originalCoords = roundCoords(this.getOriginCoords());
+    this.ctx.arc(...originalCoords, Math.round(this.width), 0, Math.PI * 2);
     this.ctx.fillStyle = "black";
     this.ctx.fill();
     this.ctx.closePath();
     const gradient = this.ctx.createRadialGradient(
       Math.round(
-        orginalCoords[0] -
-          0.4 *
-            this.width *
-            Math.cos(this.angle + (this.origin?.getAngle() ?? 0))
+        originalCoords[0] - 0.4 * this.width * Math.cos(this.getRefAngle())
       ),
       Math.round(
-        orginalCoords[1] -
-          0.4 *
-            this.width *
-            Math.sin(this.angle + (this.origin?.getAngle() ?? 0))
+        originalCoords[1] - 0.4 * this.width * Math.sin(this.getRefAngle())
       ),
       0,
-      ...orginalCoords,
+      ...originalCoords,
       Math.round(this.width)
     );
-    gradient.addColorStop(
-      0,
-      `rgb(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 1)`
-    );
-
-    gradient.addColorStop(
-      1,
-      `rgb(${this.rgb[0]}, ${this.rgb[1]}, ${this.rgb[2]}, 0.5)`
-    );
+    gradient.addColorStop(0, getRGB(this.rgb, 1));
+    gradient.addColorStop(1, getRGB(this.rgb, 0.5));
 
     this.ctx.fillStyle = gradient;
     this.ctx.fill();

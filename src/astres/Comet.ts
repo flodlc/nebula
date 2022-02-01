@@ -1,6 +1,6 @@
 import { FPS } from "src/config";
 import { Drawable } from "src/astres/Drawable";
-import { parseColor } from "src/utils/parseColor";
+import { getRGB, parseColor } from "src/utils/parseColor";
 
 const SPEED = 160;
 
@@ -75,7 +75,7 @@ export class Comet extends Drawable {
         direction: fromAngle + Math.PI + (Math.random() * Math.PI) / 6,
         distanceToTarget: maxSideSize * 0.6 * (0.7 + Math.random() * 0.6),
         speed: SPEED * (0.7 + Math.random() * 0.6),
-        rgb: parseColor("rgb(255,207,207)"),
+        rgb: parseColor("rgb(255,231,231)"),
         width: 0.2 + Math.random() * 0.6,
         startOpacity: 0,
       };
@@ -106,14 +106,8 @@ export class Comet extends Drawable {
       this.y,
       90
     );
-    gradiant.addColorStop(
-      0,
-      `rgba(${this.showConfig.rgb[0]}, ${this.showConfig.rgb[1]}, ${this.showConfig.rgb[2]}, 1)`
-    );
-    gradiant.addColorStop(
-      1,
-      `rgba(${this.showConfig.rgb[0]}, ${this.showConfig.rgb[1]}, ${this.showConfig.rgb[2]}, 0)`
-    );
+    gradiant.addColorStop(0, getRGB(this.showConfig.rgb, 1));
+    gradiant.addColorStop(1, getRGB(this.showConfig.rgb, 0));
     this.ctx.fillStyle = gradiant;
     this.ctx.fill();
     this.ctx.restore();
