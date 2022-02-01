@@ -69,10 +69,9 @@ export const ConfigDashboard = ({
 
 const getUrl = (config: Partial<SystemConfig>) => {
   const keepedConfig = Object.fromEntries(
-    DASHBOAD_CONFIG.filter((item) => config[item.key]).map((item) => [
-      item.key,
-      config[item.key]?.toString() as string,
-    ])
+    DASHBOAD_CONFIG.filter((item) => config[item.key] !== undefined).map(
+      (item) => [item.key, config[item.key]?.toString() as string]
+    )
   );
   return location.origin + "?" + new URLSearchParams(keepedConfig).toString();
 };
