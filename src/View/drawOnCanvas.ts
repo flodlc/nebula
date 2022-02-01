@@ -20,13 +20,13 @@ export const drawOnCanvas = ({
   let animation: number | undefined;
 
   let lastTimestamp = 0;
-  let timestep = 1000 / fps;
+  let timeStep = 1000 / fps;
 
   const drawMainCanvas = () => {
     if (fps) {
       animation = requestAnimationFrame(drawMainCanvas);
       const timestamp = Date.now();
-      if (timestamp - lastTimestamp < timestep) return;
+      if (timestamp - lastTimestamp < timeStep) return;
       lastTimestamp = timestamp;
     }
 

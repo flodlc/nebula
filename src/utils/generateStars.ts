@@ -1,5 +1,6 @@
 import { parseColor } from "src/utils/parseColor";
 import { Star } from "src/astres/Star";
+import { Random } from "src/utils/random";
 
 export const generateStars = ({
   stars,
@@ -23,16 +24,16 @@ export const generateStars = ({
       () =>
         new Star({
           ctx,
-          width: 0.1 * Math.random(),
+          width: Random.between(0, 0.1),
           distance: 120 * Math.pow(Math.random() * Math.random(), 1 / 2),
-          speed: rotationSpeed * 0.01 + Math.random() * rotationSpeed * 0.01,
+          speed: Random.around(rotationSpeed * 0.015, 0.005),
           rgb: parseColor(color),
         })
     );
     totalStars = stars.concat(newStars);
   }
   return totalStars.map((star) => {
-    star.speed = rotationSpeed * 0.01 + Math.random() * rotationSpeed * 0.01;
+    star.speed = Random.around(rotationSpeed * 0.015, 0.005);
     return star;
   });
 };

@@ -1,6 +1,7 @@
 import { FPS } from "src/config";
 import { Drawable } from "src/astres/Drawable";
 import { getRGB, parseColor } from "src/utils/parseColor";
+import { Random } from "src/utils/random";
 
 const SPEED = 160;
 
@@ -58,7 +59,7 @@ export class Comet extends Drawable {
 
     const shouldCreateANewShow = Math.random() > 1 - this.frequence / 100 / FPS;
     if (shouldCreateANewShow) {
-      const fromAngle = Math.random() * 2 * Math.PI;
+      const fromAngle = Random.between(0, 2 * Math.PI);
       const maxSideSize = Math.max(
         this.getCanvasHeight(),
         this.getCanvasWidth()
@@ -66,17 +67,20 @@ export class Comet extends Drawable {
       this.showConfig = {
         startCoords: {
           x:
-            ((Math.cos(fromAngle) * maxSideSize) / 3) * (0.5 + Math.random()) +
+            Random.around((Math.cos(fromAngle) * maxSideSize) / 3, 0.5, "%") +
             this.getCanvasWidth() / 2,
           y:
-            ((Math.sin(fromAngle) * maxSideSize) / 3) * (0.5 + Math.random()) +
+            Random.around((Math.sin(fromAngle) * maxSideSize) / 3, 0.5, "%") +
             this.getCanvasHeight() / 2,
         },
-        direction: fromAngle + Math.PI + (Math.random() * Math.PI) / 6,
-        distanceToTarget: maxSideSize * 0.6 * (0.7 + Math.random() * 0.6),
-        speed: SPEED * (0.7 + Math.random() * 0.6),
-        rgb: parseColor("rgb(255,231,231)"),
-        width: 0.2 + Math.random() * 0.6,
+        direction: Random.between(
+          fromAngle + Math.PI - Math.PI / 6,
+          fromAngle + Math.PI + Math.PI / 6
+        ),
+        distanceToTarget: Random.around(maxSideSize * 0.6, 0.3),
+        speed: Random.around(SPEED, 0.3, "%"),
+        rgb: parseColor("rgb(255,207,207)"),
+        width: Random.between(0.2, 0.8),
         startOpacity: 0,
       };
       this.x = this.showConfig.startCoords.x;

@@ -1,5 +1,6 @@
 import { Drawable } from "src/astres/Drawable";
 import { parseColor } from "src/utils/parseColor";
+import { Random } from "src/utils/random";
 
 const INTENSITY_MULTIPLE = 0.01;
 const ITERATION_PER_COLOR = 3;
@@ -42,8 +43,8 @@ export class NebulaColoration extends Drawable {
             y: gridItem.y * this.getCanvasHeight(),
           },
           rgb: parseColor(color),
-          ratio: 0.5 + Math.random() * 0.6,
-          width: (5 + Math.random() * 3) * this.canvasMinSide * 0.07,
+          ratio: Random.around(0.8, 0.3),
+          width: Random.around(6.5, 1.5) * this.canvasMinSide * 0.07,
         };
       });
     });
@@ -69,31 +70,35 @@ export class NebulaColoration extends Drawable {
 
       this.colorations.forEach((coloration) => {
         const opacity = getColorationOpacity(coloration, x, y) * this.intensity;
-        for (let channel = 0; channel < 3; channel++) {
-          data[i + channel] =
-            opacity * coloration.rgb[channel] +
-            data[channel + i] * (1 - opacity);
+        if (opacity > 0) {
+          for (let channel = 0; channel < 3; channel++) {
+            data[i + channel] =
+              opacity * coloration.rgb[channel] +
+              data[channel + i] * (1 - opacity);
+          }
         }
       });
     }
 
-    const unBandedData = data.map((val) => Math.round(val - 1 + Math.random()));
+    const unBandedData = data.map((val) =>
+      Math.round(Random.between(val - 1, val))
+    );
     imageData.data.set(unBandedData);
     this.ctx.putImageData(imageData, 0, 0);
   };
 }
 
 const getGrid = (length: number) => {
-  const xValues = Array(length)
+  let xValues = Array(length)
     .fill(0)
-    .map((v, i) => i)
-    .sort(() => (Math.random() > 0.5 ? 1 : -1));
+    .map((v, i) => i);
 
-  const yValues = xValues.slice().sort(() => (Math.random() > 0.5 ? 1 : -1));
+  xValues = Random.randomizeArray(xValues);
+  const yValues = Random.randomizeArray(xValues);
 
   return xValues.map((xValue) => ({
-    x: xValue / length + Math.random() * (1 / length),
-    y: (yValues.pop() as number) / length + Math.random() * (1 / length),
+    x: xValue / length + Math.random() / length,
+    y: (yValues.pop() as number) / length + Math.random() / length,
   }));
 };
 
