@@ -25,6 +25,9 @@ export const ConfigDashboard = ({
       </div>
     );
   }
+
+  const configUrl = getUrl(config);
+
   return (
     <div className="config_dashboard">
       <Header collapsed={collapsed} setCollapsed={setCollapsed} />
@@ -53,6 +56,23 @@ export const ConfigDashboard = ({
         </div>
       ))}
       <pre ref={inputRef}>{JSON.stringify(fillConfig(config), null, 4)}</pre>
+      <a
+        target="_blank"
+        href={configUrl}
+        style={{ wordBreak: "break-all", color: "#0375ff" }}
+      >
+        {configUrl}
+      </a>
     </div>
   );
+};
+
+const getUrl = (config: Partial<SystemConfig>) => {
+  const keepedConfig = Object.fromEntries(
+    DASHBOAD_CONFIG.filter((item) => config[item.key]).map((item) => [
+      item.key,
+      config[item.key]?.toString() as string,
+    ])
+  );
+  return location.origin + "?" + new URLSearchParams(keepedConfig).toString();
 };

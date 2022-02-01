@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useImperativeHandle, useState } from "react";
 import { ReactNebula } from "src/View/ReactNebula";
 import { SystemConfig } from "src/types";
 import { ConfigDashboard } from "src/playground/ConfigDashboard/ConfigDashboard";
 import { fillConfig } from "src/DEFAULT_CONFIG";
 
 export const Playground = () => {
+  const search = new URLSearchParams(location.search);
   const [config, setConfig] = useState<SystemConfig>({
     solarSystemOrbite: 70,
+    ...Object.fromEntries(search.entries()),
   });
 
   return (
