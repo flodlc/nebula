@@ -10,7 +10,7 @@ export const DASHBOAD_CONFIG = [
   {
     key: "starsRotationSpeed" as keyof SystemConfig,
     min: 0,
-    max: 80,
+    max: 500,
     step: 0.1,
     float: true,
   },
@@ -49,7 +49,7 @@ export const DASHBOAD_CONFIG = [
   {
     key: "solarSystemSpeedOrbit" as keyof SystemConfig,
     min: 0,
-    max: 500,
+    max: 1000,
     step: 10,
   },
 ];
