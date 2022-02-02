@@ -3,7 +3,7 @@ import { Drawable } from "src/astres/Drawable";
 import { getRGB, parseColor } from "src/utils/parseColor";
 import { Random } from "src/utils/random";
 
-const SPEED = 160;
+const SPEED = 125;
 
 export class Comet extends Drawable {
   ctx: CanvasRenderingContext2D;
