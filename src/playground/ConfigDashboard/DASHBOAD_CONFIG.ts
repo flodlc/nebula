@@ -23,7 +23,7 @@ export const DASHBOAD_CONFIG = [
   {
     key: "nebulasIntensity" as keyof SystemConfig,
     min: 0,
-    max: 20,
+    max: 30,
     step: 1,
   },
   {

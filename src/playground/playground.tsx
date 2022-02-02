@@ -30,7 +30,7 @@ export const Playground = () => {
           <h1
             className="gradiant"
             style={{
-              fontSize: "5rem",
+              fontSize: "4rem",
               marginBottom: "10px",
             }}
           >

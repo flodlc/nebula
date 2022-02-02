@@ -2,16 +2,9 @@ import { Drawable } from "src/astres/Drawable";
 import { parseColor } from "src/utils/parseColor";
 import { Random } from "src/utils/random";
 
-const INTENSITY_MULTIPLE = 0.01;
+const INTENSITY_MULTIPLE = 0.032;
 const ITERATION_PER_COLOR = 3;
-const COLORS = [
-  "rgb(23,2,122)",
-  "rgb(23,2,122)",
-  "rgb(20,98,47)",
-  "rgb(20,98,47)",
-  "#6e0459",
-  "#6e0459",
-];
+const COLORS = ["rgb(6,2,122)", "rgb(6,66,18)", "#57046e"];
 
 type Coloration = {
   coords: { x: number; y: number };
@@ -33,18 +26,18 @@ export class NebulaColoration extends Drawable {
   }) {
     super({ ctx });
     this.intensity = intensity * INTENSITY_MULTIPLE;
-    const grid = getGrid(COLORS.length);
+    const grid = getGrid(COLORS.length * ITERATION_PER_COLOR);
     this.colorations = COLORS.flatMap((color) => {
-      const gridItem = grid.pop()!;
       return new Array(ITERATION_PER_COLOR).fill(0).map(() => {
+        const gridItem = grid.pop()!;
         return {
           coords: {
             x: gridItem.x * this.getCanvasWidth(),
             y: gridItem.y * this.getCanvasHeight(),
           },
           rgb: parseColor(color),
-          ratio: Random.around(0.8, 0.3),
-          width: Random.around(6.5, 1.5) * this.canvasMinSide * 0.07,
+          ratio: Random.around(Math.PI / 4, 0.2),
+          width: Random.around(6, 1) * this.canvasMinSide * 0.08,
         };
       });
     });
@@ -78,28 +71,30 @@ export class NebulaColoration extends Drawable {
           }
         }
       });
+      for (let channel = 0; channel < 3; channel++) {
+        const value = data[i + channel];
+        if (value > 0) {
+          data[i + channel] = Math.round(value - 1 + Math.random());
+        }
+      }
     }
 
-    const unBandedData = data.map((val) =>
-      Math.round(Random.between(val - 1, val))
-    );
-    imageData.data.set(unBandedData);
+    imageData.data.set(data);
     this.ctx.putImageData(imageData, 0, 0);
   };
 }
 
 const getGrid = (length: number) => {
-  let xValues = Array(length)
-    .fill(0)
-    .map((v, i) => i);
-
-  xValues = Random.randomizeArray(xValues);
-  const yValues = Random.randomizeArray(xValues);
-
-  return xValues.map((xValue) => ({
-    x: xValue / length + Math.random() / length,
-    y: (yValues.pop() as number) / length + Math.random() / length,
-  }));
+  const startAngle = Math.PI * 2 * Math.random();
+  const coords = new Array(length).fill(0).map((v, i) => {
+    const angle = startAngle + Random.around((i * Math.PI * 2) / length, 0.32);
+    const rayon = Random.between(0.8, 1.1);
+    return {
+      x: (Math.cos(angle) * rayon + 1) / 2,
+      y: (Math.sin(angle) * rayon + 1) / 2,
+    };
+  });
+  return Random.randomizeArray(coords);
 };
 
 const getColorationOpacity = (coloration: Coloration, x: number, y: number) => {
