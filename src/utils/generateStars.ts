@@ -24,7 +24,7 @@ export const generateStars = ({
       () =>
         new Star({
           ctx,
-          width: Random.between(0, 0.1),
+          width: Random.between(0.03, 0.1),
           distance: 120 * Math.pow(Math.random() * Math.random(), 1 / 2),
           speed: Random.around(rotationSpeed * 0.015, 0.005),
           rgb: parseColor(color),

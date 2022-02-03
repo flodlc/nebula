@@ -2,7 +2,7 @@ import { Drawable } from "src/astres/Drawable";
 import { parseColor } from "src/utils/parseColor";
 import { Random } from "src/utils/random";
 
-const INTENSITY_MULTIPLE = 0.032;
+const INTENSITY_MULTIPLE = 0.025;
 const ITERATION_PER_COLOR = 3;
 const COLORS = ["rgb(6,2,122)", "rgb(6,66,18)", "#57046e"];
 
@@ -37,7 +37,7 @@ export class NebulaColoration extends Drawable {
           },
           rgb: parseColor(color),
           ratio: Random.around(Math.PI / 4, 0.2),
-          width: Random.around(6, 1) * this.canvasMinSide * 0.08,
+          width: Random.between(5, 8) * this.canvasMinSide * 0.08,
         };
       });
     });
