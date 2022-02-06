@@ -1,16 +1,16 @@
-import { Star } from "src/astres/Star";
-import { SystemConfig } from "src/types";
-import { fillConfig } from "src/DEFAULT_CONFIG";
-import { Comet } from "src/astres/Comet";
-import { Sun } from "src/astres/Sun";
-import { Planet } from "src/astres/Planet";
-import { NebulaColoration } from "src/astres/NebulaColoration";
-import { generateStars } from "src/utils/generateStars";
-import { drawOnCanvas } from "src/View/drawOnCanvas";
-import { generateSolarSytem } from "src/utils/generateSolarSytem";
-import { generateComet } from "src/utils/generateComet";
-import { generateNebulaColoration } from "src/utils/generateNebulaColoration";
-import { FPS } from "src/config";
+import { Star } from "../astres/Star";
+import { SystemConfig } from "../types";
+import { fillConfig } from "../DEFAULT_CONFIG";
+import { Comet } from "../astres/Comet";
+import { Sun } from "../astres/Sun";
+import { Planet } from "../astres/Planet";
+import { NebulaColoration } from "../astres/NebulaColoration";
+import { generateStars } from "../utils/generateStars";
+import { drawOnCanvas } from "../View/drawOnCanvas";
+import { generateSolarSytem } from "../utils/generateSolarSytem";
+import { generateComet } from "../utils/generateComet";
+import { generateNebulaColoration } from "../utils/generateNebulaColoration";
+import { FPS } from "../config";
 
 const CANVAS_STYLE =
   "width: 100%;height: 100%;position:absolute;will-change:transform;top: 0;left:0;";

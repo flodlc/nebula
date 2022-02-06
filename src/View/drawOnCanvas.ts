@@ -1,4 +1,4 @@
-import { Drawable } from "src/astres/Drawable";
+import { Drawable } from "../astres/Drawable";
 
 export const drawOnCanvas = ({
   canvas,

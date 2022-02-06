@@ -1,6 +1,6 @@
-import { Astre, AstreArgs } from "src/astres/Astre";
-import { roundCoords } from "src/utils/roundCoords";
-import { getRGB } from "src/utils/parseColor";
+import { Astre, AstreArgs } from "./Astre";
+import { roundCoords } from "../utils/roundCoords";
+import { getRGB } from "../utils/parseColor";
 
 export class Sun extends Astre {
   constructor({ ...args }: AstreArgs) {

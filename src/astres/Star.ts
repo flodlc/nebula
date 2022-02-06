@@ -1,5 +1,5 @@
-import { Astre, AstreArgs } from "src/astres/Astre";
-import { roundCoords } from "src/utils/roundCoords";
+import { Astre, AstreArgs } from "./Astre";
+import { roundCoords } from "../utils/roundCoords";
 
 export class Star extends Astre {
   constructor({ ...args }: AstreArgs) {

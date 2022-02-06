@@ -1,6 +1,6 @@
-import { Drawable } from "src/astres/Drawable";
-import { parseColor } from "src/utils/parseColor";
-import { Random } from "src/utils/random";
+import { Drawable } from "./Drawable";
+import { parseColor } from "../utils/parseColor";
+import { Random } from "../utils/random";
 
 const INTENSITY_MULTIPLE = 0.025;
 const ITERATION_PER_COLOR = 3;

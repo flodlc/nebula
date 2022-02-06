@@ -1,7 +1,7 @@
-import { FPS } from "src/config";
-import { Drawable } from "src/astres/Drawable";
-import { getRGB, parseColor } from "src/utils/parseColor";
-import { Random } from "src/utils/random";
+import { Drawable } from "./Drawable";
+import { Random } from "../utils/random";
+import { FPS } from "../config";
+import { getRGB, parseColor } from "../utils/parseColor";
 
 const SPEED = 125;
 

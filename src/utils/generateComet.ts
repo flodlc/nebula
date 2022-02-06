@@ -1,4 +1,4 @@
-import { Comet } from "src/astres/Comet";
+import { Comet } from "../astres/Comet";
 
 export const generateComet = ({
   ctx,

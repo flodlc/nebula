@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Playground } from "src/playground/playground";
+import { Playground } from "./playground/playground";
 
 ReactDOM.render(
   <React.StrictMode>

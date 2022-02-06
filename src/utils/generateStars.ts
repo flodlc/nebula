@@ -1,6 +1,6 @@
-import { parseColor } from "src/utils/parseColor";
-import { Star } from "src/astres/Star";
-import { Random } from "src/utils/random";
+import { parseColor } from "../utils/parseColor";
+import { Star } from "../astres/Star";
+import { Random } from "../utils/random";
 
 export const generateStars = ({
   stars,

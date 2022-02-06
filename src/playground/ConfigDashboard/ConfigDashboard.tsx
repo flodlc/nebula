@@ -1,8 +1,8 @@
-import { SystemConfig } from "src/types";
 import React, { useRef, useState } from "react";
-import { fillConfig } from "src/DEFAULT_CONFIG";
-import { DASHBOAD_CONFIG } from "src/playground/ConfigDashboard/DASHBOAD_CONFIG";
-import { Header } from "src/playground/ConfigDashboard/Header";
+import { SystemConfig } from "../../types";
+import { DASHBOAD_CONFIG } from "../ConfigDashboard/DASHBOAD_CONFIG";
+import { Header } from "../ConfigDashboard/Header";
+import { fillConfig } from "../../DEFAULT_CONFIG";
 
 export const ConfigDashboard = ({
   onUpdate,

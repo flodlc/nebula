@@ -1,6 +1,6 @@
-import { parseColor } from "src/utils/parseColor";
-import { Sun } from "src/astres/Sun";
-import { Planet } from "src/astres/Planet";
+import { parseColor } from "../utils/parseColor";
+import { Sun } from "../astres/Sun";
+import { Planet } from "../astres/Planet";
 
 export const generateSolarSytem = ({
   planets,

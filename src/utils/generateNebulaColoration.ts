@@ -1,4 +1,4 @@
-import { NebulaColoration } from "src/astres/NebulaColoration";
+import { NebulaColoration } from "../astres/NebulaColoration";
 
 export const generateNebulaColoration = ({
   ctx,

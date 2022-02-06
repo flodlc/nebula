@@ -1,4 +1,4 @@
-import { SystemConfig } from "src/types";
+import { SystemConfig } from "../../types";
 
 export const DASHBOAD_CONFIG = [
   {

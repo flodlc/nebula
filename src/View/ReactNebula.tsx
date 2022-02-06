@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
-import { SystemConfig } from "src/types";
-import { Nebula } from "src/View/Nebula";
+import { SystemConfig } from "../types";
+import { Nebula } from "../View/Nebula";
 
 export const ReactNebula = ({ config = {} }: { config?: SystemConfig }) => {
   const nebulaRef = useRef<Nebula>();

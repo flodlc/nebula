@@ -1,8 +1,8 @@
-import React, { useImperativeHandle, useState } from "react";
-import { ReactNebula } from "src/View/ReactNebula";
-import { SystemConfig } from "src/types";
-import { ConfigDashboard } from "src/playground/ConfigDashboard/ConfigDashboard";
-import { fillConfig } from "src/DEFAULT_CONFIG";
+import React, { useState } from "react";
+import { SystemConfig } from "../types";
+import { ConfigDashboard } from "./ConfigDashboard/ConfigDashboard";
+import { fillConfig } from "../DEFAULT_CONFIG";
+import { ReactNebula } from "../View/ReactNebula";
 
 export const Playground = () => {
   const search = new URLSearchParams(location.search);

@@ -1,4 +1,4 @@
-import { Drawable } from "src/astres/Drawable";
+import { Drawable } from "./Drawable";
 
 export type AstreArgs = {
   ctx: CanvasRenderingContext2D;

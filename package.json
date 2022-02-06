@@ -1,10 +1,11 @@
 {
   "name": "@flodlc/nebula",
-  "version": "1.0.50",
+  "version": "1.0.55",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
   "author": "flodlc",
+  "files": ["dist/*"],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,8 +14,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "package": "vite build --config vite-build.config.ts && yarn packages:types",
-    "packages:types": "yarn tsc --emitDeclarationOnly --outDir dist",
+    "package": "vite build --config vite-build.config.ts && yarn package:types",
+    "package:types": "yarn tsc --emitDeclarationOnly --outDir dist",
     "serve": "serve -s dist"
   },
   "private": false,
@@ -23,14 +24,13 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@vitejs/plugin-react": "^1.1.4",
-    "vite": "^2.7.13"
-  },
-  "dependencies": {
     "prettier": "^2.5.1",
+    "vite": "^2.7.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "typescript": "^4.5.4"
   },
+  "dependencies": {},
   "keywords": [
     "stars",
     "planets",
