@@ -16,12 +16,14 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": false,
     "declaration": true,
-    "jsx": "react"
+    "emitDeclarationOnly": true,
+    "jsx": "react",
+    "outDir": "dist",
   },
   "include": [
-    "src",
+    "src/index.ts",
   ]
 }
