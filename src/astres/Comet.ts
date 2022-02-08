@@ -3,7 +3,7 @@ import { Random } from "../utils/random";
 import { FPS } from "../config";
 import { getRGB, parseColor } from "../utils/parseColor";
 
-const SPEED = 125;
+const SPEED = 115;
 
 export class Comet extends Drawable {
   ctx: CanvasRenderingContext2D;
@@ -78,7 +78,7 @@ export class Comet extends Drawable {
           fromAngle + Math.PI + Math.PI / 6
         ),
         distanceToTarget: Random.around(maxSideSize * 0.6, 0.3),
-        speed: Random.around(SPEED, 0.3, "%"),
+        speed: Random.around(SPEED, 0.15, "%"),
         rgb: parseColor("rgb(255,207,207)"),
         width: Random.between(0.2, 0.8),
         startOpacity: 0,
